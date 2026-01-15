@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Pantry</title>
-  </head>
+<%- include('../partials/_header.ejs', { title: "My Pantry" }) %>
   <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1>Welcome to my Pantry</h1>
     <a href="/users/<%=user._id%>/foods/new">Add an Item</a>
+
+
+    <% if (pantry.length === 0)  { %>
+     <h4>There are no items in this pantry.</h4>
+    <% } %>
+    
+    <ul>
+      <% pantry.forEach((food)=>{ %>
+        <li>
+          <a href="/users/<%= user._id %>/foods/<%= food._id %>">
+            <%= food.quantity %> <%= food.unit %> of <%= food.name %>
+          </a>
+        </li>
+      <% }) %>
+    </ul>
   </body>
 </html>

@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home Page</title>
-</head>
+<%- include('./partials/_header.ejs', { title: "Home Page" }) %>
 <body>
   <%- include('./partials/_navbar.ejs') %>
   <% if (user) { %>
@@ -14,7 +10,7 @@
       <a href="/auth/sign-out">Sign out</a>
     </p>
   <% } else { %>
-    <h1>Welcome,guest</h1>
+    <h1>Welcome to Cookbook</h1>
     <!-- <p>
       <a href="/auth/sign-up">Sign up</a> or
       <a href="/auth/sign-in">Sign in</a>.

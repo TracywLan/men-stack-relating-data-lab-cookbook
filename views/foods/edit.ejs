@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/_header.ejs', { title: "Add New Item" }) %>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Add a New Item to the Pantry</h1>
+    <div class="new-body">
+      <form
+  action="/users/<%= user._id %>/foods/<%= food._id %>?_method=PUT"
+  method="POST"
+>
+          <label for="name">Food Item:</label>
+          <input type="text" name="name" id="name" required placeholder="Food Item" value="<%= food.name %>"/>
+
+          <label>Category:</label>
+              <select name="category">
+                  <option value="">Select...</option>
+                  <option value="dairy"
+                  <%= food.category === "dairy" ? "selected" : "" %>
+                  >
+                   Dairy
+                </option>
+                  <option value="produce"<%= food.category === "produce" ? "selected" : "" %>>Produce</option>
+                  <option value="grains"<%= food.category === "grains" ? "selected" : "" %>>Grains</option>
+                  <option value="canned"<%= food.category === "canned" ? "selected" : "" %>>Canned</option>
+                  <option value="spice"<%= food.category === "spice" ? "selected" : "" %>>Spice</option>
+                  <option value="other"<%= food.category === "other" ? "selected" : "" %>>Other</option>
+              </select>
+
+          <label for="quantity">Quantity:</label>
+          <input type="number" name="quantity" id="quantity" value="<%= food.quantity %>"/>
+
+          <label for="unit">Unit:</label>
+          <input type="text" name="unit" id="unit" value="<%= food.unit %>"/>
+
+          <label for="expiresAt">Expires At:</label>
+          <input type="date" name="expiresAt" id="expiresAt" value="<%= food.expiresAt %>" />
+
+          <button type="submit">Update Food</button>
+      </form>
+  </div>
+  </body>
+</html>

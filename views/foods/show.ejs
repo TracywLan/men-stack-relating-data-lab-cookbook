@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+ <%- include('../partials/_header.ejs', { title: "Item Info" }) %>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1><%= food.name %></h1>
+    <% if (food.quantity) { %>
+    <p>Quantity: <%= food.quantity %> <%= food.unit %></p>
+    <% } %>
+
+    <% if (food.category) { %>
+    <p>Category: <%= food.category %></p>
+    <% } %>
+
+    <% if (food.expiresAt) { %>
+    <p>Expires At: <%= new Date(food.expiresAt).toDateString() %></p>
+  <% } else { %>
+    <p>No expiration date</p>
+  <% } %>
+
+
+    <a href="/users/<%= user._id %>/foods/<%= food._id %>/edit">
+      Edit this Item
+    </a>
+
+    <form
+      action="/users/<%= user._id %>/foods/<%= food._id %>?_method=DELETE"
+      method="POST"
+    >
+      <button type="submit">Delete this Item</button>
+    </form>
+    <a href="/users/<%= user._id %>/foods">← Back to Pantry</a>
+  </body>
+</html>
